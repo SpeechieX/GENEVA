@@ -1,21 +1,25 @@
 .Container {
-    width: 300px;
     height: 400px;
-    border: white 1px solid;
     margin: 0 auto;
     margin-top: 220px;
+    color: white;
+    background: linear-gradient(75deg, rgba(0, 0, 0, 0.39), rgba(255, 255, 255, 0.438))no-repeat fixed;
 }
 
 .UsersList > tbody > tr:nth-child(even){
     background-color: rgba(255, 255, 255, 0.459);
-    display: table;
+    /* display: table; */
 }
     
     
 
 .UsersList > tbody > tr {
-    width: 298px;
-    color: white;
+    width: 598px;
+    padding-top: 10px;
+}
+
+.UsersList > tbody > td {
+    padding: 5px;
 }
 
 .UsersList > tbody > tr:hover {

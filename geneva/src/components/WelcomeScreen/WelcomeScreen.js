@@ -19,23 +19,26 @@ render() {
   return (
     <div className="Container">
     <table className="UsersList">
+    <table class="table table-striped table-hover table-responsive">
       <thead>
         <tr>
-          <td>#</td>
-          <td>ID</td>
-          <td>email</td>
+        <th scope="col">#</th>
+        <th scope="col">ID</th>
+        <th scope="col">Email</th>
         </tr>
       </thead>
       <tbody>
       {this.props.users.map((u, idx) => (
         <tr key={u.socketId}>
-          <td>{idx + 1}</td>
-          <td>{u.socketId}</td>
-          <td>{u.email}</td>
+        <th scope="row">{idx + 1}</th>
+        <th scope="row">{u.socketId}</th>
+        <th scope="row">{u.email}</th>
         </tr>
       ))}
       </tbody>
     </table>
+    </table>
+
     </div>
   );
 } 
