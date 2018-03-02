@@ -5,7 +5,7 @@ import LoginPage from '../LoginPage/LoginPage';
 import SignUpPage from '../SignUpPage/SignUpPage';
 import WelcomeScreen from '../../components/WelcomeScreen/WelcomeScreen';
 import userService from '../../utils/userService';
-import Video from '../../components/Video/Video';
+// import Video from '../../components/Video/Video';
 import NavBar from '../../components/NavBar/NavBar';
 
 import socket, { setApp } from '../../utils/socket';
@@ -67,11 +67,11 @@ class App extends Component {
                 />
               }/>
 
-              <Route exact path='/video' render={(props) =>
+              {/* <Route exact path='/video' render={(props) =>
                 <Video
                   {...props}
                 />
-              }/>
+              }/> */}
               <Route exact path='/login' render={(props) =>
                 <LoginPage
                   {...props}
