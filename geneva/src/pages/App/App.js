@@ -23,12 +23,12 @@ class App extends Component {
   handleLogin = () => {
     this.setState({user: userService.getUser()});
   }
-
+  
   handleLogout = () => {
     userService.logout();
     this.setState({user: null});
   }
-
+  
   handleSignup = () => {
     this.setState({user: userService.getUser()});
   }
@@ -40,7 +40,7 @@ class App extends Component {
   componentDidMount() {
     let user = userService.getUser();
     this.setState({user});
-    socket.emit('register-user', user.email);
+    if (user) socket.emit('register-user', user.email);
     // console.log(new RTCSessionDescription({type: "answer"}).sdp);
     // Make Fetch Request for Users
     // UpdateState w data from Fetch
