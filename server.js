@@ -3,8 +3,6 @@ const path = require("path");
 const logger = require("morgan");
 const bodyParser = require("body-parser");
 const favicon = ("serve-favicon")
-const PORT = 3001;
-
 
 const app = express();
 
@@ -34,7 +32,7 @@ app.get('/*', function(req, res) {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
-
+const PORT = process.env.PORT || 3001;
 var httpServer = app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
 
 require('./io')(httpServer);
