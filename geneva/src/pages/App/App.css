@@ -1,0 +1,7 @@
+body {
+  background: linear-gradient(45deg, rgb(0, 0, 136), rgba(92, 2, 92, 0.801))no-repeat fixed;
+  background-repeat: no-repeat;
+  background-position: center; 
+  background-attachment: fixed;
+}
+

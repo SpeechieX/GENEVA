@@ -1,0 +1,10 @@
+.SignUpPage {
+    height: 300px;
+    width: 300px;
+    /* margin: 0 auto; */
+    margin-top: 140px;
+    margin-left: 565px;
+    vertical-align: middle;
+    background-color: rgba(238, 238, 238, 0.514);
+    border: black 1px solid;
+}

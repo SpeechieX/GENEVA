@@ -1,0 +1,23 @@
+.Container {
+    width: 300px;
+    height: 400px;
+    border: white 1px solid;
+    margin: 0 auto;
+    margin-top: 220px;
+}
+
+.UsersList > tbody > tr:nth-child(even){
+    background-color: rgba(255, 255, 255, 0.459);
+    display: table;
+}
+    
+    
+
+.UsersList > tbody > tr {
+    width: 298px;
+    color: white;
+}
+
+.UsersList > tbody > tr:hover {
+    background-color: #b6edd02d;
+}

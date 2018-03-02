@@ -1,0 +1,22 @@
+.Nav {
+    height: 90px;
+    position: sticky;
+    top: 20px;
+    margin-top: px;
+    padding-top: 30px;
+    font-size: 29px;
+    float: right;
+}
+
+.NavList > li  {
+    display: inline;
+    padding: 7px;
+    text-decoration: none;
+    list-style: none;
+    color: white;
+    font-family: 'Abel', sans-serif;
+    /* font-family: 'Exo', sans-serif; */
+    /* font-family: 'Abril Fatface', cursive; */
+    /* font-family: 'Dosis', sans-serif; */
+    /* font-family: 'Fugaz One', cursive; */
+}
