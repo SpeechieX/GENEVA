@@ -15,6 +15,7 @@ class SignUpPage extends Component {
   render() {
     return (
       <div className='SignUpPage'>
+        <img src="https://i.imgur.com/QTbFQUl.png"/>
         <SignUpForm
           {...this.props}
           updateMessage={this.updateMessage}

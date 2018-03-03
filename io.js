@@ -19,7 +19,18 @@ module.exports = function(httpServer) {
           delete users[socket.id];
           io.emit('update-user-list', Object.keys(users).map(id => users[id]));
         });
+
+        socket.on('recieve-offer', function(payload) {
+          // socketId is the user sending us the offer
+          io.to(payload.targetSocketId).emit('recieve-offer', payload);
+        });
+        
+        socket.on('recieve-answer', function(payload) {
+          io.to(payload.targetSocketId).emit('recieve-answer', payload);
+        });
     
     });
+
+    
 
 };

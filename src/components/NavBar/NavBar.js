@@ -11,12 +11,8 @@ import {
 class NavBar extends Component {
     constructor(props) {
     super(props);
-    this.state = {
-        user: "",
-        time: ""
 
-    }; 
-}
+};
 
 
 
@@ -25,8 +21,10 @@ render() {
     return (
         <div className='Nav'>
           <div className="NavList">
-            <li>DOCS</li>
-            <li>MORE</li>
+            <Link to="/home"><li>HOME</li></Link>
+            { this.props.user && <Link to="/video"><li>README</li></Link> }
+            <Link to="/signup"><li>SIGN UP</li></Link>
+            <Link to="/login"><li>LOGIN</li></Link>
           </div>
         </div>
     );

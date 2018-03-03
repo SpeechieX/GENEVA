@@ -8,7 +8,7 @@ import userService from '../../utils/userService';
 // import Video from '../../components/Video/Video';
 import NavBar from '../../components/NavBar/NavBar';
 
-import socket, { setApp } from '../../utils/socket';
+import { getSocket, setApp, setPeerConnection } from '../../utils/socket';
 
 class App extends Component {
   constructor(props) {
@@ -16,8 +16,11 @@ class App extends Component {
     setApp(this);
     this.state = {
       user: null,
-      users: []
+      users: [],
+      stream: null,
+      peerConnection: new RTCPeerConnection()
     };
+    setPeerConnection(this.state.peerConnection);
   }
   
   handleLogin = () => {
@@ -36,8 +39,13 @@ class App extends Component {
   handleUpdateUsers = (users) => {
     this.setState({users});
   }
+
+  handleUpdateStream = (stream) => {
+    this.setState({stream});
+  }
   
   componentDidMount() {
+    const socket = getSocket();
     let user = userService.getUser();
     this.setState({user});
     if (user) socket.emit('register-user', user.email);
@@ -52,18 +60,20 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-          <NavBar />
+      <div className="geneva">
+          <img id="geneva"src="https://i.imgur.com/Bfjla2A.png" />
+          <NavBar user={this.state.user}/>
           {/* {this.props.connected ? 'Connected' : 'Not connected'}
           <button onClick={this.props.onHost}>Host</button>
           <button onClick={this.props.onJoin}>Join</button> */}
-          <Router>
-            <Switch>
+          <Switch>
             <Route exact path='/home' render={(props) =>
                 <WelcomeScreen
                   {...props}
+                  stream={this.state.stream}
                   users={this.state.users}
                   myEmail={this.state.user && this.state.user.email}
+                  peerConnection={this.state.peerConnection}
                 />
               }/>
 
@@ -87,7 +97,6 @@ class App extends Component {
             
             
             </Switch>
-          </Router>
        
 
 

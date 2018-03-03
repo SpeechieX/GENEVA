@@ -1,9 +1,26 @@
 .LoginPage {
-    /* margin: 20px; */
-    padding: 15px;
-    display: inline;
+    width: 350px;
+    height: 300px;
+    margin: 110px 550px;
+    position: relative;
+    /* z-index: 2; */
+    border: black solid 1px;
+    padding-right: 20px;
+    padding-top: 40px;
+    text-align: center;
+    background: radial-gradient(rgba(255, 255, 255, 0.479),rgba(128, 128, 128, 0.445))no-repeat fixed;
+
 }
 
-
-
+.LoginPage > img {
+    width:150px;
+    position: relative;
+    top: -20px;
     
+}
+
+.LoginPage > h3 {
+    font-size: 12px;
+    padding-left: 4px;
+    color:black;
+}

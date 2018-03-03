@@ -1,7 +1,14 @@
 body {
-  background: linear-gradient(45deg, rgb(0, 0, 136), rgba(92, 2, 92, 0.801))no-repeat fixed;
+  background: linear-gradient(45deg, rgba(152, 151, 155, 0.521), rgba(178, 230, 247, 0.733))no-repeat fixed;
   background-repeat: no-repeat;
   background-position: center; 
   background-attachment: fixed;
 }
 
+#geneva {
+  position: absolute;
+  z-index: -2;
+  width: 700px;
+  /* margin-left: 400px; */
+  margin: -110px 0px 0px 370px;
+}
