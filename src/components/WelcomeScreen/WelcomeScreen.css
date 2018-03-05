@@ -5,8 +5,8 @@ body {
 .Container {
     height: 400px;
     margin: 0 auto;
-    margin-top: 220px;
     color: black;
+    margin-top: -120px;
     z-index: 3;
 }
 
@@ -39,21 +39,34 @@ body {
 .userTable {
     margin: 190px 0px 0px 430px;
     position: absolute;
-    border: rgba(51, 42, 42, 0.445) dotted 1px;
+    /* border: rgba(51, 42, 42, 0.445) dotted 1px; */
     border-radius: 15px;
 }
 
 #charlie {
     /* border: red 2px solid; */
     height: 300px;
-    width: 500px;
-    margin-left: 20px;
+    width: 400px;
+    border:rgb(138, 138, 138) 2px solid;
+    margin: -20px 47px 19px -120px;
+    border-radius: 15px;
 }
 
 #delta {
-    border: green 2px solid;
+    border: rgb(138, 138, 138) 2px solid;
     height: 300px;
-    width: 500px;
+    width: 400px;
+    margin: -20px 10px -32px -633px;
+    border-radius: 15px;
     /* display: none; */
 
+}
+
+.house1 {
+    float:left;
+
+}
+
+.house2 {
+    float: right;
 }

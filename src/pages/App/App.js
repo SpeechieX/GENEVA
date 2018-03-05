@@ -23,17 +23,17 @@ class App extends Component {
     };
     setPeerConnection(this.state.peerConnection);
   }
-
-
+  
   printPositon = () =>  {
     navigator.geolocation.getCurrentPosition(success)
     function success(position){
       var latitude  = position.coords.latitude;
       var longitude = position.coords.longitude;
       console.log(latitude, longitude);
+    }
   }
-}
   
+
   handleLogin = () => {
     this.setState({user: userService.getUser()});
   }
@@ -52,6 +52,9 @@ class App extends Component {
   }
 
   handleUpdateStream = (source, stream) => {
+    // source argument needs to be sent as either 'localStream', or 'remoteStream'
+    console.info(`${Date.now()}: ${source} going to be updated on App's state.stream`)
+    
     this.setState({[source]: stream});
   }
   
@@ -67,13 +70,11 @@ class App extends Component {
     // Pass via Props
     // Render Props in Welcome Component 
   }
-
   
 
   render() {
     return (
       <div className="geneva">
-          {/* <img id="geneva"src="https://i.imgur.com/Bfjla2A.png" /> */}
           <NavBar user={this.state.user}/>
           {/* {this.props.connected ? 'Connected' : 'Not connected'}
           <button onClick={this.props.onHost}>Host</button>
@@ -83,7 +84,7 @@ class App extends Component {
                 <WelcomeScreen
                   {...props}
                   localStream={this.state.localStream}
-                  RemoteStream={this.state.remoteStream}
+                  remoteStream={this.state.remoteStream}
                   users={this.state.users}
                   myEmail={this.state.user && this.state.user.email}
                   peerConnection={this.state.peerConnection}
@@ -120,3 +121,5 @@ class App extends Component {
 }
 
 export default App;
+
+

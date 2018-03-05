@@ -9,7 +9,6 @@ class Welcome extends Component {
       super(props);
       this.state = {message: ''}
     }
-
   
     render() {
       return (
