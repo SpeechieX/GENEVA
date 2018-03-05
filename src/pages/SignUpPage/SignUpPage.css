@@ -1,13 +1,15 @@
 .SignUpPage {
     height: 450px;
-    width: 350px;
+    width: 355px;
     margin-top: 130px;
     margin-left: 565px;
     background: radial-gradient(rgba(255, 255, 255, 0.479),rgba(128, 128, 128, 0.445))no-repeat fixed;
-    border: black 1px solid;
+    border: rgba(0, 0, 0, 0.438) 1px dotted;
     text-align: center;
     padding-right: 30px;
     padding-top: 45px;
+    border-radius: 15px;
+    box-shadow: black 0px 0px 1px 0px;
 }
 
 .SignUpPage > img {

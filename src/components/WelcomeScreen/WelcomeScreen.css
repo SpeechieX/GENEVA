@@ -54,6 +54,6 @@ body {
     border: green 2px solid;
     height: 300px;
     width: 500px;
-    display: none;
+    /* display: none; */
 
 }
