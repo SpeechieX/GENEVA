@@ -10,14 +10,6 @@ class Welcome extends Component {
       this.state = {message: ''}
     }
 
-    sendOfferToConnect = (socketId) => {
-        // get media streams
-        // and other stuff
-        // to get the sdp
-        let sdp = null;
-        let mySocketId = this.props.users.find(u => u.email === this.props.myEmail).socketId;
-        socket.broadcast.to(socketId).emit('recieve-offer', {sdp: sdp, socketId: mySocketId});
-    }
   
     render() {
       return (

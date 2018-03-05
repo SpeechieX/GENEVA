@@ -17,11 +17,22 @@ class App extends Component {
     this.state = {
       user: null,
       users: [],
-      stream: null,
+      localStream: null,
+      remoteStream: null,
       peerConnection: new RTCPeerConnection()
     };
     setPeerConnection(this.state.peerConnection);
   }
+
+
+  printPositon = () =>  {
+    navigator.geolocation.getCurrentPosition(success)
+    function success(position){
+      var latitude  = position.coords.latitude;
+      var longitude = position.coords.longitude;
+      console.log(latitude, longitude);
+  }
+}
   
   handleLogin = () => {
     this.setState({user: userService.getUser()});
@@ -40,8 +51,8 @@ class App extends Component {
     this.setState({users});
   }
 
-  handleUpdateStream = (stream) => {
-    this.setState({stream});
+  handleUpdateStream = (source, stream) => {
+    this.setState({[source]: stream});
   }
   
   componentDidMount() {
@@ -49,6 +60,7 @@ class App extends Component {
     let user = userService.getUser();
     this.setState({user});
     if (user) socket.emit('register-user', user.email);
+    this.printPositon();
     // console.log(new RTCSessionDescription({type: "answer"}).sdp);
     // Make Fetch Request for Users
     // UpdateState w data from Fetch
@@ -61,7 +73,7 @@ class App extends Component {
   render() {
     return (
       <div className="geneva">
-          <img id="geneva"src="https://i.imgur.com/Bfjla2A.png" />
+          {/* <img id="geneva"src="https://i.imgur.com/Bfjla2A.png" /> */}
           <NavBar user={this.state.user}/>
           {/* {this.props.connected ? 'Connected' : 'Not connected'}
           <button onClick={this.props.onHost}>Host</button>
@@ -70,10 +82,12 @@ class App extends Component {
             <Route exact path='/home' render={(props) =>
                 <WelcomeScreen
                   {...props}
-                  stream={this.state.stream}
+                  localStream={this.state.localStream}
+                  RemoteStream={this.state.remoteStream}
                   users={this.state.users}
                   myEmail={this.state.user && this.state.user.email}
                   peerConnection={this.state.peerConnection}
+                  handleUpdateStream={this.handleUpdateStream}
                 />
               }/>
 

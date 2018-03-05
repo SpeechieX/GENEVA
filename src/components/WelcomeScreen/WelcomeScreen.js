@@ -14,27 +14,33 @@ class WelcomeScreen extends Component {
   };
 
   
-  connectToOtherUser = (socketId) => {
+  connectToOtherUser = (answererSocketId) => {
     navigator.mediaDevices.getUserMedia({
       audio: false,
       video: true
     })
     .then((stream) => {
-      this.props.peerConnection.addStream(stream);
+      stream.getTracks().forEach((track) => {
+        this.props.peerConnection.addTrack(track, stream);
+      });
+      this.props.handleUpdateStream('localStream', stream);
       this.props.peerConnection.createOffer()
       .then((sdp) => {
         return this.props.peerConnection.setLocalDescription(sdp);
       })
       .then(() => {
-        let mySocketId = this.props.users.find(u => u.email === this.props.myEmail).socketId;
-        this.socket.emit('recieve-offer', {sdp: this.props.peerConnection.localDescription, socketId: mySocketId, targetSocketId: socketId});
+        let offererSocketId = this.props.users.find(u => u.email === this.props.myEmail).socketId;
+        this.socket.emit('offer', { sdp: this.props.peerConnection.localDescription, offererSocketId, answererSocketId});
       });
     })
     
   }
 
+
+
   showVideo = () => {
-    if(this.props.stream) this.videoEl.srcObject = this.props.stream; 
+    if(this.props.localStream) this.localVideo.srcObject = this.props.localStream; 
+    if(this.props.remoteStream) this.remoteVideo.srcObject = this.props.remoteStream; 
   }
   
   
@@ -49,8 +55,9 @@ class WelcomeScreen extends Component {
 
   render() {
     return (
-      <div className="Container">
-      <video ref={videoEl => this.videoEl = videoEl} autoPlay={true}/>
+      <div className="userTable">
+      <video id="charlie" ref={localVideo => this.localVideo = localVideo} autoPlay={true}/>
+      <video id="delta" ref={remoteVideo => this.remoteVideo = remoteVideo} autoPlay={true}/>
       <table className="UsersList table table-striped table-hover table-responsive">
         <thead>
           <tr>
@@ -62,14 +69,17 @@ class WelcomeScreen extends Component {
         </thead>
         <tbody>
         {this.props.users.map((u, idx) => (
-          u.email === this.props.myEmail ?
-            null
-          :
-            <tr key={u.socketId}>
+          <tr key={idx}>
               <td scope="row">{idx + 1}</td>
               <td scope="row">{u.socketId}</td>
               <td scope="row">{u.email}</td>
-              <td><button className="btn btn-primary" onClick={() => this.connectToOtherUser(u.socketId)}>Let's Connect</button></td>
+              <td>
+                { u.email === this.props.myEmail ?
+                'Your Connection'
+              :
+              <button className="btn btn-success" onClick={() => this.connectToOtherUser(u.socketid)}>Let's Connect</button>
+              }
+              </td>
             </tr>
         ))}
         </tbody>

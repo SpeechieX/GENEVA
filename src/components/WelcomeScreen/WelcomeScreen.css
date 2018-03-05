@@ -1,3 +1,7 @@
+body {
+    /* background: radial-gradient(rgba(37, 37, 37, 0.808), black)no-repeat fixed; */
+}
+
 .Container {
     height: 400px;
     margin: 0 auto;
@@ -11,21 +15,45 @@
     /* display: table; */
 }
     
+ 
     
 
 .UsersList > tbody > tr {
     width: 598px;
     padding-top: 10px;
+    color: black;
+    border-bottom: black 1px solid;
 }
 
 .UsersList > tbody > td {
     padding: 5px;
+
 }
 
 .UsersList > tbody > tr:hover {
-    background-color: #b6edd02d;
+    background-color:rgba(121, 115, 115, 0.438); ;
+    color: white;
+    padding: 0px 0px 4px 0px;
 }
 
-.UserList {
-    border: red 1px solid;
+.userTable {
+    margin: 190px 0px 0px 430px;
+    position: absolute;
+    border: rgba(51, 42, 42, 0.445) dotted 1px;
+    border-radius: 15px;
+}
+
+#charlie {
+    /* border: red 2px solid; */
+    height: 300px;
+    width: 500px;
+    margin-left: 20px;
+}
+
+#delta {
+    border: green 2px solid;
+    height: 300px;
+    width: 500px;
+    display: none;
+
 }
