@@ -8,7 +8,7 @@ Geneva also generates location coordinates of each participant via the IP or Wi-
 
 This experiment represents the beginning steps of a greater project. For now, feel free to chat with your friends seamlessly using the flow of WebRTC.
 
-<img src="https://i.imgur.com/69bLU1I.png">
+<img src="https://i.imgur.com/69bLU1I.png" align="center">
 
 # QUICK FACT
 The name 'Geneva' was inspired by the character 'Jenova' from Final Fantasy VII.
