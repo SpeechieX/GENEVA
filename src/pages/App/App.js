@@ -5,8 +5,8 @@ import LoginPage from '../LoginPage/LoginPage';
 import SignUpPage from '../SignUpPage/SignUpPage';
 import WelcomeScreen from '../../components/WelcomeScreen/WelcomeScreen';
 import userService from '../../utils/userService';
-// import Video from '../../components/Video/Video';
 import NavBar from '../../components/NavBar/NavBar';
+import Docs from '../../pages/Documentation/Docs';
 
 import { getSocket, setApp, setPeerConnection } from '../../utils/socket';
 
@@ -87,6 +87,12 @@ class App extends Component {
                 />
                 :
                 <Redirect to='/login' />
+              }/>
+              
+              <Route exact path='/docs' render={(props) =>
+                  <Docs
+                    {...props}
+                />
               }/>
 
              

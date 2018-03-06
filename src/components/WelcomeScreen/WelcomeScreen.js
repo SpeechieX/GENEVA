@@ -33,7 +33,7 @@ class WelcomeScreen extends Component {
     console.info(`${Date.now()}: Let's Connect button clicked`)
 
     navigator.mediaDevices.getUserMedia({
-      audio: true,
+      audio: false,
       video: true
     })
     .then((stream) => {
@@ -107,7 +107,7 @@ class WelcomeScreen extends Component {
       
       <div className="userTable">
       <div className="Container">
-      <div className="house1">
+      <div className="house1">  
         <video id="charlie" ref={localVideo => this.localVideo = localVideo} autoPlay={true}/>
       </div>
       <div className="house2">
@@ -117,8 +117,6 @@ class WelcomeScreen extends Component {
       <table className="UsersList table table-striped table-hover table-responsive">
         <thead>
           <tr>
-            <th scope="col">#</th>
-            <th scope="col">Name</th>
             <th scope="col">Email</th>
             <th scope="col">Coordinates</th>
             <th scope="col">Connect</th>
@@ -128,9 +126,7 @@ class WelcomeScreen extends Component {
         <tbody>
         {this.props.users.map((u, idx) => (
           <tr key={idx}>
-            <td scope="row">{u.name}</td>
         {/* { <td scope="row">{this.props.user.name}</td> } */}
-            <td scope="row">{u.socketId}</td>
             <td scope="row">{u.email}</td>
         <td className="geotag">
           {this.state.latitude ? this.state.latitude + " " : "grabbing your location.."}{this.state.longitude}
