@@ -14,7 +14,7 @@ class WelcomeScreen extends Component {
       this.state = {
         latitude: null,
         longitude: null,
-        users: [],
+        users: null,
       };
       this.socket = getSocket();
   };
@@ -33,7 +33,7 @@ class WelcomeScreen extends Component {
     console.info(`${Date.now()}: Let's Connect button clicked`)
 
     navigator.mediaDevices.getUserMedia({
-      audio: true,
+      audio: false,
       video: true
     })
     .then((stream) => {
@@ -80,12 +80,13 @@ class WelcomeScreen extends Component {
   
   componentDidMount() {
     
-    fetch('/api/users', { 
-      method: "GET",
-      headers: new Headers({'Authorization': 'Bearer ' + tokenService.getToken()})
-    })
-      .then(data => data.json())
-      .then(users => this.setState({users}));
+    // fetch('/', { 
+    //   method: "GET",
+    //   headers: new Headers({'Authorization': 'Bearer ' + tokenService.getToken()})
+
+    // })
+    //   .then(data => data.json())
+    //   .then(users => console.log(users));
   
     console.info(`${Date.now()}: WelcomeScreen componentDidMount`)
     
@@ -116,18 +117,20 @@ class WelcomeScreen extends Component {
       <table className="UsersList table table-striped table-hover table-responsive">
         <thead>
           <tr>
+            <th scope="col">#</th>
             <th scope="col">Name</th>
             <th scope="col">Email</th>
             <th scope="col">Coordinates</th>
             <th scope="col">Connect</th>
-            
 
           </tr>
         </thead>
         <tbody>
-        {this.state.users.map((u, idx) => (
+        {this.props.users.map((u, idx) => (
           <tr key={idx}>
             <td scope="row">{u.name}</td>
+        {/* { <td scope="row">{this.props.user.name}</td> } */}
+            <td scope="row">{u.socketId}</td>
             <td scope="row">{u.email}</td>
         <td className="geotag">
           {this.state.latitude ? this.state.latitude + " " : "grabbing your location.."}{this.state.longitude}
