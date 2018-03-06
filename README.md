@@ -10,6 +10,9 @@ This experiment represents the beginning steps of a greater project. For now, fe
 
 <img src="https://i.imgur.com/69bLU1I.png">
 
+# QUICK FACT
+The name 'Geneva' was inspired by the character 'Jenova' from Final Fantasy VII.
+
 
 
 # TECHNOLOGIES USED
