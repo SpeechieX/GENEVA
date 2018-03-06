@@ -24,14 +24,7 @@ class App extends Component {
     setPeerConnection(this.state.peerConnection);
   }
   
-  printPositon = () =>  {
-    navigator.geolocation.getCurrentPosition(success)
-    function success(position){
-      var latitude  = position.coords.latitude;
-      var longitude = position.coords.longitude;
-      console.log(latitude, longitude);
-    }
-  }
+ 
   
 
   handleLogin = () => {
@@ -63,7 +56,8 @@ class App extends Component {
     let user = userService.getUser();
     this.setState({user});
     if (user) socket.emit('register-user', user.email);
-    this.printPositon();
+    
+  
     // console.log(new RTCSessionDescription({type: "answer"}).sdp);
     // Make Fetch Request for Users
     // UpdateState w data from Fetch
@@ -75,12 +69,13 @@ class App extends Component {
   render() {
     return (
       <div className="geneva">
-          <NavBar user={this.state.user}/>
+          <NavBar user={this.state.user} handleLogout={this.handleLogout}/>
           {/* {this.props.connected ? 'Connected' : 'Not connected'}
           <button onClick={this.props.onHost}>Host</button>
           <button onClick={this.props.onJoin}>Join</button> */}
           <Switch>
             <Route exact path='/home' render={(props) =>
+                userService.getUser() ?
                 <WelcomeScreen
                   {...props}
                   localStream={this.state.localStream}
@@ -90,25 +85,27 @@ class App extends Component {
                   peerConnection={this.state.peerConnection}
                   handleUpdateStream={this.handleUpdateStream}
                 />
+                :
+                <Redirect to='/login' />
               }/>
 
-              {/* <Route exact path='/video' render={(props) =>
-                <Video
-                  {...props}
-                />
-              }/> */}
+             
               <Route exact path='/login' render={(props) =>
-                <LoginPage
-                  {...props}
-                  handleLogin={this.handleLogin}
+                  <LoginPage
+                    {...props}
+                    handleLogin={this.handleLogin}
                 />
               }/>
+
               <Route exact path='/signup' render={(props) => 
-                <SignUpPage
-                  {...props}
-                  handleSignup={this.handleSignup}
+                  <SignUpPage
+                    {...props}
+                    handleSignup={this.handleSignup}
                 />
+                
               }/>
+
+            
             
             
             </Switch>

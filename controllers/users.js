@@ -40,7 +40,16 @@ function createJWT(user) {
   );
 }
 
+function getAll(req, res) { 
+  User.find({})
+  .then(function(user) {
+    console.log(user)
+    res.json(user).status(200);
+  })
+}
+
 module.exports = {
   signup,
-  login
+  login, 
+  getAll
 };

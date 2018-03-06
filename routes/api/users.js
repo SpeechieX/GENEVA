@@ -7,13 +7,7 @@ var usersCtrl = require('../../controllers/users');
 /*---------- Public Routes ----------*/
 router.post('/signup', usersCtrl.signup);
 router.post('/login', usersCtrl.login);
+router.get('/', usersCtrl.getAll);
 // router.post('/logout', swipe.logout);
-
-
-
-
-
-
-
 
 module.exports = router;

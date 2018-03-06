@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import "./NavBar.css";
+import userService from '../../utils/userService';
+
 import {
   BrowserRouter,
   Link,
@@ -19,24 +21,18 @@ class NavBar extends Component {
 
 render() {
     return (
-        // <div className='Nav'>
-        //   <div className="NavList">
-        //     <Link to="/home"><li>HOME</li></Link>
-        //     { this.props.user && <Link to="/video"><li>README</li></Link> }
-        //     <Link to="/signup"><li>SIGN UP</li></Link>
-        //     <Link to="/login"><li>LOGIN</li></Link>
-        //   </div>
-        // </div>
-      <div className="navbar bg-dark navbar-light">
-        <nav class="navbar navbar-light bg-faded">
-          <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+     
+      <div className="navbar navbar-inverse bg-dark">
+        <nav className="navbar navbar-dark bg-faded">
+          <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           </button>
-        <a class="navbar-brand" href="#">GENEVA</a>
-        <a class="nav-link" href="/home">Connect <span class="sr-only">(current)</span></a>
-        <a class="nav-link" href="/signup">Account <span class="sr-only">(current)</span></a>
-        <a class="nav-link" href="/login">Login <span class="sr-only">(current)</span></a>
-        <a class="nav-link" href="/logout">Logout <span class="sr-only">(current)</span></a>
-        </nav>
+    { this.props.user && <a className="navbar-brand" href="#">Hello, {this.props.user.name}. Welcome to the Geneva Project</a> }
+        <a className="nav-link" href="/home">Connect <span className="sr-only">(current)</span></a>
+        { !this.props.user && <a className="nav-link" href="/signup">Create Account <span className="sr-only">(current)</span></a>}
+        <a className="nav-link" href="/docs">Documentation <span className="sr-only">(current)</span></a>
+        { !this.props.user && <a className="nav-link" href="/login">Login<span className="sr-only">(current)</span></a>}
+        { this.props.user && <a className="nav-link" href="/logout" onClick={() => userService.logout()} >Logout <span className="sr-only">(current)</span></a>}
+       </nav>
       </div>
      
     );

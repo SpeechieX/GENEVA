@@ -25,3 +25,8 @@
 .NavList > li:hover {
     padding: 2px;
 }
+
+.navbar navbar-dark bg-faded > a {
+
+    float: right;
+}

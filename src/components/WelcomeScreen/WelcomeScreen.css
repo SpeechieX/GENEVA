@@ -4,7 +4,7 @@ body {
 
 .Container {
     height: 400px;
-    margin: 0 auto;
+    /* margin: 0 auto; */
     color: black;
     margin-top: -120px;
     z-index: 3;
@@ -22,12 +22,11 @@ body {
     width: 598px;
     padding-top: 10px;
     color: black;
-    border-bottom: black 1px solid;
+    margin: 0 auto;
 }
 
 .UsersList > tbody > td {
     padding: 5px;
-
 }
 
 .UsersList > tbody > tr:hover {
@@ -69,4 +68,14 @@ body {
 
 .house2 {
     float: right;
+}
+
+.geotag {
+    color: navy;
+    position: relative;
+    z-index: 2;
+    /* border: 2px solid black; */
+    /* border-radius: 50px; */
+    text-align: left;
+    margin-top: 50px;
 }

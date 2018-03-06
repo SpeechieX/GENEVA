@@ -1,25 +1,39 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import userService from '../../utils/userService';
+import tokenService from '../../utils/tokenService';
+
 import './WelcomeScreen.css';
 import { getSocket } from '../../utils/socket';
+import App from '../../pages/App/App'
 
 
 class WelcomeScreen extends Component {
   constructor(props) {
       super(props);
       this.state = {
+        latitude: null,
+        longitude: null,
+        users: [],
       };
       this.socket = getSocket();
   };
 
+  printPositon = () =>  {
+    navigator.geolocation.getCurrentPosition((position) => {
+      this.setState({ 
+        latitude: position.coords.latitude, 
+        longitude: position.coords.longitude
+      })
+    })
+  }
   
   connectToOtherUser = (answererSocketId) => {
 
     console.info(`${Date.now()}: Let's Connect button clicked`)
 
     navigator.mediaDevices.getUserMedia({
-      audio: false,
+      audio: true,
       video: true
     })
     .then((stream) => {
@@ -66,9 +80,17 @@ class WelcomeScreen extends Component {
   
   componentDidMount() {
     
+    fetch('/api/users', { 
+      method: "GET",
+      headers: new Headers({'Authorization': 'Bearer ' + tokenService.getToken()})
+    })
+      .then(data => data.json())
+      .then(users => this.setState({users}));
+  
     console.info(`${Date.now()}: WelcomeScreen componentDidMount`)
     
     this.showVideo();
+    this.printPositon();
   }
   
   componentDidUpdate() {
@@ -89,22 +111,27 @@ class WelcomeScreen extends Component {
       </div>
       <div className="house2">
         <video id="delta" ref={remoteVideo => this.remoteVideo = remoteVideo} autoPlay={true}/>
+
       </div>
       <table className="UsersList table table-striped table-hover table-responsive">
         <thead>
           <tr>
-            <th scope="col">#</th>
-            <th scope="col">ID</th>
+            <th scope="col">Name</th>
             <th scope="col">Email</th>
+            <th scope="col">Coordinates</th>
             <th scope="col">Connect</th>
+            
+
           </tr>
         </thead>
         <tbody>
-        {this.props.users.map((u, idx) => (
+        {this.state.users.map((u, idx) => (
           <tr key={idx}>
-            <td scope="row">{idx + 1}</td>
-            <td scope="row">{u.socketId}</td>
+            <td scope="row">{u.name}</td>
             <td scope="row">{u.email}</td>
+        <td className="geotag">
+          {this.state.latitude ? this.state.latitude + " " : "grabbing your location.."}{this.state.longitude}
+        </td>
             <td>
               { u.email === this.props.myEmail ?
                 'Your Connection'

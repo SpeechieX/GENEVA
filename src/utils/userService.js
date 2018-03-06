@@ -25,6 +25,7 @@ function login(user) {
       const socket = getSocket();
       tokenService.setToken(token);
       socket.emit('register-user', user.email)
+      
     });
 }
 
