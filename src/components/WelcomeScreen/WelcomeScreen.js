@@ -33,7 +33,7 @@ class WelcomeScreen extends Component {
     console.info(`${Date.now()}: Let's Connect button clicked`)
 
     navigator.mediaDevices.getUserMedia({
-      audio: false,
+      audio: true,
       video: true
     })
     .then((stream) => {

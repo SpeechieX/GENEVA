@@ -56,7 +56,7 @@ export const getSocket = function() {
 
 function addAnswererStream() {
     return navigator.mediaDevices.getUserMedia({
-        audio: true,
+        audio: false,
         video: true
     })
     .then((stream) => {
