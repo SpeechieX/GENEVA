@@ -1,4 +1,4 @@
-<img src="https://i.imgur.com/Bfjla2A.png">
+<img src="https://i.imgur.com/QTbFQUl.png">
 
 # GENEVA - A CODEC EXPERIMENT
 
@@ -16,6 +16,7 @@ The name 'Geneva' was inspired by the character 'Jenova' from Final Fantasy VII.
 
 
 # TECHNOLOGIES USED
+* ReactJS
 * WEBRTC
 * SOCKET.IO
 * HTML
